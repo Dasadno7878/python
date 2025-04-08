@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Корзина</h2>
+{% if items %}
+    <ul>
+        {% for item in items %}
+            <li>
+                {{ item.name }} - {{ "%.2f"|format(item.price) }} ₽
+                <a href="{{ url_for('remove_from_cart', item_id=item.id) }}">Удалить</a>
+            </li>
+        {% endfor %}
+    </ul>
+    <p><strong>Общая сумма:</strong> {{ "%.2f"|format(total) }} ₽</p>
+{% else %}
+    <p>Корзина пуста.</p>
+{% endif %}
+{% endblock %}
